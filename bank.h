@@ -20,7 +20,7 @@ int getCustomersAmount(Bank bank);
 void setBankName(Bank bank, char name[]);
 void setCustomersAmount(Bank bank, int amount);
 
-
-// TODO add destroyer
+// destroyer
+void bankDestructor(Bank bank);
 
 #endif // BANK_H_INCLUDED

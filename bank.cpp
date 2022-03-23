@@ -67,3 +67,8 @@ void setCustomersAmount(Bank bank, int amount)
 {
 	bank-> customersAmount = amount;
 }
+
+void bankDestructor(Bank bank)
+{
+    delete bank; // free memory
+}

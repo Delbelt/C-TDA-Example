@@ -68,3 +68,8 @@ void setCustomerId(Customer customer, int id)
 {
 	customer-> id = id;
 }
+
+void customerDestructor(Customer customer)
+{
+    delete customer; // free memory
+}

@@ -20,6 +20,7 @@ int getCustomerId(Customer customer);
 void setCustomerName(Customer customer, char name[]);
 void setCustomerId(Customer customer, int id);
 
-// TODO add destroyer
+// destroyer
+void customerDestructor(Customer customer);
 
 #endif // CUSTOMER_H_INCLUDED
