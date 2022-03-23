@@ -12,7 +12,8 @@ using namespace std;
 int main()
 {
     Bank b1 = constructorBank("Bank", 125);
-    toStringBank(b1); // expected output: Bank name: Bank ---- Customers amount: 125
+    modifyBank(b1); // expect input: Bank name: "other name" ---- Customer amount: 250
+    toStringBank(b1); // expected output: Bank name: other name ---- Customers amount: 250
 
     cout << "\n" << endl; // new line
 
