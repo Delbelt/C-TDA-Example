@@ -15,11 +15,15 @@ int main()
     modifyBank(b1); // expect input: Bank name: "other name" ---- Customer amount: 250
     toStringBank(b1); // expected output: Bank name: other name ---- Customers amount: 250
 
+    bankDestructor(b1);
+
     cout << "\n" << endl; // new line
 
     Customer c1 = constructorCustomer("Delbelt", 1111);
     modifyCustomer(c1); // expect input: Customer name: "other nickName" ---- Customer id: 9999
     toStringCustomer(c1); // expected output: Customer name: other nickName ---- ID: 9999
+
+    customerDestructor(c1);
 
     cout << "\n" << endl; // new line
 
