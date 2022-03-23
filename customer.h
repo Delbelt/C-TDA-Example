@@ -7,9 +7,19 @@ typedef struct CustomerStruct *Customer; // pointer to a structure
 
 Customer constructorCustomer(char name[20], int id);
 
-// show the customer
-void toStringCustomer(Customer customer);
+void toStringCustomer(Customer customer); // show the customer
+void modifyCustomer(Customer customer); // modify attributes of customer
 
-// TODO add destroyer, getters and setters
+// getters
+
+char *getCustomerName(Customer customer);
+int getCustomerId(Customer customer);
+
+// setters
+
+void setCustomerName(Customer customer, char name[]);
+void setCustomerId(Customer customer, int id);
+
+// TODO add destroyer
 
 #endif // CUSTOMER_H_INCLUDED
