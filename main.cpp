@@ -18,7 +18,8 @@ int main()
     cout << "\n" << endl; // new line
 
     Customer c1 = constructorCustomer("Delbelt", 1111);
-    toStringCustomer(c1); // expected output: Customer name: Delbelt ---- ID: 1111
+    modifyCustomer(c1); // expect input: Customer name: "other nickName" ---- Customer id: 9999
+    toStringCustomer(c1); // expected output: Customer name: other nickName ---- ID: 9999
 
     cout << "\n" << endl; // new line
 
