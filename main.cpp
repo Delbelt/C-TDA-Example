@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 
-// TDA librarys
+// TDA's libraries
 #include "bank.h"
 #include "customer.h"
 
@@ -12,18 +12,16 @@ using namespace std;
 int main()
 {
     Bank b1 = constructorBank("Bank", 125);
-    modifyBank(b1); // expect input: Bank name: "other name" ---- Customer amount: 250
-    toStringBank(b1); // expected output: Bank name: other name ---- Customers amount: 250
+    toStringBank(b1); // expected output: Bank name: Bank ---- Customers amount: 125
+
+    // note: list customer are included in toStringBank
+
+    /* expected output:
+        CUSTOMERS:
+        Customer name: empty ---- ID: -1 (ten times)
+    */
 
     bankDestructor(b1);
-
-    cout << "\n" << endl; // new line
-
-    Customer c1 = constructorCustomer("Delbelt", 1111);
-    modifyCustomer(c1); // expect input: Customer name: "other nickName" ---- Customer id: 9999
-    toStringCustomer(c1); // expected output: Customer name: other nickName ---- ID: 9999
-
-    customerDestructor(c1);
 
     cout << "\n" << endl; // new line
 
