@@ -13,13 +13,13 @@ struct BankStruct
     Customer customers[CUSTOMER_TOTAL];
 };
 
-Bank constructorBank(char name[20], int customersAmount)
+Bank constructorBank(char name[20])
 {
     Bank bank = new BankStruct; // memory instance - dynamic memory
 
     // variables assignment
     strcpy(bank-> name, name);
-    bank-> customersAmount = customersAmount;
+    bank-> customersAmount = 0;
 
     int i;
 
@@ -33,16 +33,22 @@ Bank constructorBank(char name[20], int customersAmount)
 
 void toStringBank(Bank bank)
 {
-    printf("Bank name: %s ---- Customers amount: %d", getBankName(bank), getCustomersAmount(bank));
+    printf("\nBank name: %s ---- Customers amount: %d \n\n", getBankName(bank), getCustomersAmount(bank));
+}
 
+void showCustomers(Bank bank)
+{
     int i;
 
-    printf("\n\nCUSTOMERS\n");
+    printf("CUSTOMERS\n");
 
     for(i = 0; i < CUSTOMER_TOTAL; i++)
     {
-        toStringCustomer(bank-> customers[i]); // show bank's customers
-        printf("\n"); // new line
+        if(getCustomerId(bank-> customers[i]) != -1) // prevent show empty customers
+        {
+            toStringCustomer(bank-> customers[i]); // show bank's customers
+            printf("\n"); // new line
+        }
     }
 }
 
@@ -63,6 +69,71 @@ void modifyBank(Bank bank)
     setCustomersAmount(bank, customersAmountAux);
 
     printf("bank modified successfully!!!\n");
+}
+
+int searchEmptySpace(Bank bank)
+{
+	int pos = -1; // flag and position
+	int i = 0;
+
+    while(i < CUSTOMER_TOTAL && pos == -1) // break the loop in case find empty pos
+    {
+        if(getCustomerId(bank-> customers[i]) == -1)
+        {
+            pos = i;
+        }
+            i++;
+    }
+
+    return pos; // first position empty
+}
+
+int searchID(Bank bank, int customerID)
+{
+	int condition = -1; // flag and conditional
+	int i = 0;
+
+	while(i < CUSTOMER_TOTAL && condition == -1)
+	{
+		if(getCustomerId(bank-> customers[i]) == customerID)
+		{
+			condition = 1;
+		}
+
+		else
+		{
+			if (i + 1 == CUSTOMER_TOTAL)
+			{
+				condition = 0;
+			}
+		}
+                i++;
+	}
+
+	return condition;
+}
+
+void addCustomer(Bank bank, Customer customer)
+{
+	int emptyPlace = searchEmptySpace(bank); // save the empty position
+
+	int repeat = searchID(bank, getCustomerId(customer)); // verify ID
+
+    // repeat value 0: mean that the ID value customer doesn't exist into the bank
+	// repeat value 1: mean that the ID value customer exist into the bank
+
+	if (repeat == 0)
+	{
+		bank-> customers[emptyPlace] = customer;
+		setCustomersAmount(bank, emptyPlace + 1);
+
+		printf ("customer [%s] successfully added\n", getCustomerName(customer));
+	}
+
+	else // repeat == 1
+	{
+		printf ("customer already registered, ID: [%d] \n", getCustomerId(customer)); //PARA AVISAR AL USUARIO QUE NO ES POSIBLE AGREGARLO
+	}
 }
 
 // getters
