@@ -24,7 +24,7 @@ Bank constructorBank(char name[20])
 
     for(i = 0; i < CUSTOMER_TOTAL; i++)
     {
-        bank-> customers[i] = constructorCustomer("empty", -1); // create empty customers
+        bank-> customers[i] = constructorCustomer("empty", -1, -1); // create empty customers
     }
 
     return bank;
@@ -171,7 +171,7 @@ void deleteCustomer(Bank bank, Customer customer)
 //ORDENAMIENTO
 void orderCustomerByName(Bank bank, int orderBy) // order customers by name asc and desc
 {
-	Customer customerAux = constructorCustomer(" ", -1); // aux customer to bubbling
+	Customer customerAux = constructorCustomer(" ", -1, -1); // aux customer to bubbling
 	int i, j;
 
 	for (i = 0; i < CUSTOMER_TOTAL; i++)
