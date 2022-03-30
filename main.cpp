@@ -11,6 +11,8 @@ using namespace std;
 
 int main()
 {
+    enum orderBy {asc = -1, desc = 1};
+
     Customer c1 = constructorCustomer("name1", 1111);
     Customer c2 = constructorCustomer("name2", 2222);
 
@@ -35,7 +37,6 @@ int main()
     */
 
     // delete a customer the bank
-
     deleteCustomer(b1, c2);
 
     cout << "" << endl; // new line
@@ -50,6 +51,48 @@ int main()
     // exception: delete a customer that does not exist in the struct
     Customer c3 = constructorCustomer("name3", 5555);
     deleteCustomer(b1, c3); // expected output: Customer name3 not found
+
+    cout << "" << endl; // new line
+
+    // create customers
+    Customer c4 = constructorCustomer("dname", 1234);
+    Customer c5 = constructorCustomer("kname", 4321);
+    Customer c6 = constructorCustomer("ename", 2612);
+
+    // add customers
+    addCustomer(b1, c4);
+    addCustomer(b1, c5);
+    addCustomer(b1, c6);
+
+    cout << "" << endl; // new line
+
+    //order customer by name asc
+    orderCustomerByName(b1, asc);
+
+    showCustomers(b1); // expected output:
+
+    /*
+        CUSTOMERS
+        Customer name: dname ---- ID: 1234
+        Customer name: ename ---- ID: 2612
+        Customer name: kname ---- ID: 4321
+        Customer name: name1 ---- ID: 1111
+    */
+
+    cout << "" << endl; // new line
+
+    // order customer by name desc
+    orderCustomerByName(b1, desc);
+
+    showCustomers(b1); // expected output:
+
+    /*
+        CUSTOMERS
+        Customer name: name1 ---- ID: 1111
+        Customer name: kname ---- ID: 4321
+        Customer name: ename ---- ID: 2612
+        Customer name: dname ---- ID: 1234
+    */
 
     bankDestructor(b1); // deallocate memory of bank
 
