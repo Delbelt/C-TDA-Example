@@ -2,7 +2,6 @@
 #include <cstring>
 
 #include "bank.h" // header
-#include "customer.h" // important!!! include customer.h
 
 #define CUSTOMER_TOTAL 10 // const
 
@@ -56,17 +55,12 @@ void modifyBank(Bank bank)
 {
     // variables aux
     char nameAux[20];
-    int customersAmountAux;
 
-    printf("Name: ");
+    printf("bank Name: ");
     fflush(stdin);
     gets(nameAux);
 
-    printf("\nCustomers amount: ");
-    scanf("%d", &customersAmountAux);
-
     setBankName(bank, nameAux);
-    setCustomersAmount(bank, customersAmountAux);
 
     printf("bank modified successfully!!!\n");
 }
@@ -132,8 +126,46 @@ void addCustomer(Bank bank, Customer customer)
 
 	else // repeat == 1
 	{
-		printf ("customer already registered, ID: [%d] \n", getCustomerId(customer)); //PARA AVISAR AL USUARIO QUE NO ES POSIBLE AGREGARLO
+		printf ("customer already registered, ID: [%d] \n", getCustomerId(customer));
 	}
+}
+
+void deleteCustomer(Bank bank, Customer customer)
+{
+	int i = 0; // index
+	int flag = 1; // loop flag
+	char name[40]; // name aux
+
+	strcpy(name, getCustomerName(customer));
+
+		while(i < CUSTOMER_TOTAL && flag == 1)
+		{
+			if(bank-> customers[i] == customer)
+			{
+
+			    // clean up customer
+				setCustomerName(bank-> customers[i]," ");
+				setCustomerId(bank-> customers[i], -1);
+
+				// out of service: customerDestructor(bank-> customers[i]); // deallocate memory customer
+
+				//bank-> customersAmount --; another way to decrease
+				setCustomersAmount(bank, bank-> customersAmount - 1); // decrease customers amount
+
+				printf ("customer %s removed successfully\n", name);
+
+				flag = 10; // break the loop (improve performance the loop)
+            }
+
+			else
+			{
+				if (i + 1 == CUSTOMER_TOTAL)
+				{
+					printf ("Customer %s not found\n", name);
+				}
+			}
+                i++; // increase while loop
+		}
 }
 
 // getters
