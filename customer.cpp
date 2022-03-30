@@ -7,23 +7,25 @@ struct CustomerStruct
 {
     char name[20];
     int id;
+    float money;
 };
 
-Customer constructorCustomer(char name[20], int id)
+Customer constructorCustomer(char name[20], int id, float money)
 {
     Customer customer = new CustomerStruct; // memory instance
 
     // variables assignament
     strcpy(customer-> name, name);
     customer-> id = id;
+    customer-> money = money;
 
     return customer;
 }
 
 void toStringCustomer(Customer customer)
 {
-    printf("Customer name: %s ---- ID: %d",
-    getCustomerName(customer), getCustomerId(customer));
+    printf("Customer name: %s ---- ID: %d ---- Money %.2f",
+    getCustomerName(customer), getCustomerId(customer), getCustomerMoney(customer));
 }
 
 void modifyCustomer(Customer customer)
@@ -57,6 +59,11 @@ int getCustomerId(Customer customer)
 	return customer-> id;
 }
 
+float getCustomerMoney(Customer customer)
+{
+	return customer-> money;
+}
+
 // setters
 
 void setCustomerName(Customer customer, char name[])
@@ -67,6 +74,11 @@ void setCustomerName(Customer customer, char name[])
 void setCustomerId(Customer customer, int id)
 {
 	customer-> id = id;
+}
+
+void setCustomerMoney(Customer customer, float money)
+{
+	customer-> money = money;
 }
 
 void customerDestructor(Customer customer)
