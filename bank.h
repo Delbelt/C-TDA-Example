@@ -19,6 +19,10 @@ int searchID(Bank bank, int customerID); // verify if already register customer 
 void addCustomer(Bank bank, Customer customer); // add Customer into the bank
 void deleteCustomer(Bank bank, Customer customer); // delete bank's customer
 
+void orderCustomerByName(Bank bank, int orderBy); // order customer by name - bubble method
+
+
+
 // getters
 
 char *getBankName(Bank bank);

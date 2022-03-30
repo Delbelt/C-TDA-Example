@@ -159,7 +159,7 @@ void deleteCustomer(Bank bank, Customer customer)
 
 			else
 			{
-				if (i + 1 == CUSTOMER_TOTAL)
+				if (i + 1 == CUSTOMER_TOTAL) // in case not finding the customer
 				{
 					printf ("Customer %s not found\n", name);
 				}
@@ -168,6 +168,32 @@ void deleteCustomer(Bank bank, Customer customer)
 		}
 }
 
+//ORDENAMIENTO
+void orderCustomerByName(Bank bank, int orderBy) // order customers by name asc and desc
+{
+	Customer customerAux = constructorCustomer(" ", -1); // aux customer to bubbling
+	int i, j;
+
+	for (i = 0; i < CUSTOMER_TOTAL; i++)
+	{
+		for (j = 0;j < CUSTOMER_TOTAL; j++)
+		{
+			if (strcmp(getCustomerName(bank-> customers[i]), getCustomerName(bank-> customers[j])) == orderBy) // STRCMP = compare the strings
+			//si la primera cadena es mayor retornara un valor positivo y si es menor retornara un valor negativo.
+			{
+                // return STRCMP = -1 -> if the first string is smaller than second (Ascendant)
+                // return STRCMP =  0 -> the strings are the same
+                // return STRCMP =  1 -> if the first string is larger than second (Descendant)
+
+                // bubble method
+				customerAux = bank-> customers[i];
+				bank-> customers[i] = bank-> customers[j];
+				bank-> customers[j] = customerAux;
+			}
+		}
+	}
+
+}
 // getters
 
 char *getBankName(Bank bank)
