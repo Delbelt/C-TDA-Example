@@ -34,11 +34,26 @@ int main()
         Customer name: name2 ---- ID: 2222
     */
 
-    bankDestructor(b1);
+    // delete a customer the bank
 
-    //cout << "\n" << endl; // new line
+    deleteCustomer(b1, c2);
 
-    return 0;
+    cout << "" << endl; // new line
+
+    showCustomers(b1); // expected output:
+
+    /*
+        CUSTOMERS
+        Customer name: name1 ---- ID: 1111
+    */
+
+    // exception: delete a customer that does not exist in the struct
+    Customer c3 = constructorCustomer("name3", 5555);
+    deleteCustomer(b1, c3); // expected output: Customer name3 not found
+
+    bankDestructor(b1); // deallocate memory of bank
+
+    // cout << "\n" << endl; // new line
 }
 
 // implementations
