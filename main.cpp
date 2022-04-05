@@ -5,6 +5,7 @@
 #include "bank.h"
 #include "customer.h"
 #include "local_date.h"
+#include "local_time.h"
 
 using namespace std;
 
@@ -13,20 +14,19 @@ using namespace std;
 int main()
 {
     // create LocalDate for tests
-    LocalDate fecha = LocalDate_of(1997, 8, 5);
-    LocalDate fechaActual = LocalDate_now();
+    LocalTime time = LocalTime_of(15,30,0);
+    LocalTime timeCurrent = LocalTime_now();
 
-    LocalDate_ToString(fecha); // expected output: 1997-8-5
+    LocalTime_ToString(time); // expected output: 15:30
+    LocalTime_ToString(timeCurrent); // expected output: time current in the moment the compilation, format: HOUR:MINUTE:SECOND
 
-    LocalDate_ToString(fechaActual); // expected output: date current in the moment the compilation, format: YEAR-MONTH-DAY
+    LocalTime_ToString(LocalTime_plusHours(time, 1)); // expected output: 16:30
+    LocalTime_ToString(LocalTime_plusMinutes(time, 1)); // expected output: 15:31
+    LocalTime_ToString(LocalTime_plusSeconds(time, 15)); // expected output: 15:30:15
 
-    LocalDate_ToString(LocalDate_plusDays(fecha, 1)); // expected output: 1997-8-6
-    LocalDate_ToString(LocalDate_plusMonths(fecha, 1)); // expected output: 1997-9-5
-    LocalDate_ToString(LocalDate_plusYears(fecha, 1)); // expected output: 1998-8-5
-
-    LocalDate_ToString(LocalDate_minusDays(fecha, 1)); // expected output: 1997-8-4
-    LocalDate_ToString(LocalDate_minusMonths(fecha, 1)); // expected output: 1997-7-5
-    LocalDate_ToString(LocalDate_minusYears(fecha, 1)); // expected output: 1996-8-5
+    LocalTime_ToString(LocalTime_minusHours(time, 1)); // expected output: 14:30
+    LocalTime_ToString(LocalTime_minusMinutes(time, 1)); // expected output: 15:29
+    LocalTime_ToString(LocalTime_minusSeconds(time, 0)); // expected output: 15:30
 
     //cout << "" << endl; // new line
 
