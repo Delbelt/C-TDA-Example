@@ -4,6 +4,7 @@
 // TDA's libraries
 #include "bank.h"
 #include "customer.h"
+#include "local_date.h"
 
 using namespace std;
 
@@ -11,40 +12,25 @@ using namespace std;
 
 int main()
 {
-    enum orderBy {asc = -1, desc = 1};
+    // create LocalDate for tests
+    LocalDate fecha = LocalDate_of(1997, 8, 5);
+    LocalDate fechaActual = LocalDate_now();
 
-    // create customers
-    Customer c1 = constructorCustomer("name1", 1111, 125);
-    Customer c2 = constructorCustomer("name2", 2222, 171);
-    Customer c3 = constructorCustomer("name3", 1234, 200);
+    LocalDate_ToString(fecha); // expected output: 1997-8-5
 
-    Bank b1 = constructorBank("Bank");
-    toStringBank(b1); // expected output: Bank name: Bank ---- Customers amount: 0
+    LocalDate_ToString(fechaActual); // expected output: date current in the moment the compilation, format: YEAR-MONTH-DAY
 
-    // add customers
-    addCustomer(b1, c1); // expected output: customer [name1] successfully added
-    addCustomer(b1, c2); // expected output: customer [name2] successfully added
-    addCustomer(b1, c3); // expected output: customer [name3] successfully added
+    LocalDate_ToString(LocalDate_plusDays(fecha, 1)); // expected output: 1997-8-6
+    LocalDate_ToString(LocalDate_plusMonths(fecha, 1)); // expected output: 1997-9-5
+    LocalDate_ToString(LocalDate_plusYears(fecha, 1)); // expected output: 1998-8-5
 
-    toStringBank(b1); // expected output: Bank name: Bank ---- Customers amount: 3
+    LocalDate_ToString(LocalDate_minusDays(fecha, 1)); // expected output: 1997-8-4
+    LocalDate_ToString(LocalDate_minusMonths(fecha, 1)); // expected output: 1997-7-5
+    LocalDate_ToString(LocalDate_minusYears(fecha, 1)); // expected output: 1996-8-5
 
-    // test: setter money customer
-    setCustomerMoney(c1, (getCustomerMoney(c1)) + 125);
+    //cout << "" << endl; // new line
 
-    // TODO add "withdrawMoney" and "depositMoney"
-
-    showCustomers(b1); // expected output:
-
-    /*
-        CUSTOMERS
-        Customer name: name1 ---- ID: 1111 ---- Money 250.00 test passed!!! previous value: 125 -> current value: 250
-        Customer name: name2 ---- ID: 2222 ---- Money 171.00
-        Customer name: name3 ---- ID: 1234 ---- Money 200.00
-    */
-
-    bankDestructor(b1); // deallocate memory of bank
-
-    // cout << "\n" << endl; // new line
+    return 0;
 }
 
 // implementations
