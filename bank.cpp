@@ -168,7 +168,6 @@ void deleteCustomer(Bank bank, Customer customer)
 		}
 }
 
-//ORDENAMIENTO
 void orderCustomerByName(Bank bank, int orderBy) // order customers by name asc and desc
 {
 	Customer customerAux = constructorCustomer(" ", -1, -1); // aux customer to bubbling
@@ -179,7 +178,6 @@ void orderCustomerByName(Bank bank, int orderBy) // order customers by name asc 
 		for (j = 0;j < CUSTOMER_TOTAL; j++)
 		{
 			if (strcmp(getCustomerName(bank-> customers[i]), getCustomerName(bank-> customers[j])) == orderBy) // STRCMP = compare the strings
-			//si la primera cadena es mayor retornara un valor positivo y si es menor retornara un valor negativo.
 			{
                 // return STRCMP = -1 -> if the first string is smaller than second (Ascendant)
                 // return STRCMP =  0 -> the strings are the same
@@ -192,7 +190,6 @@ void orderCustomerByName(Bank bank, int orderBy) // order customers by name asc 
 			}
 		}
 	}
-
 }
 // getters
 
