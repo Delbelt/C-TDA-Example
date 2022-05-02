@@ -6,6 +6,7 @@
 #include "customer.h"
 #include "local_date.h"
 #include "local_time.h"
+#include "linked_list.h"
 
 using namespace std;
 
@@ -13,20 +14,25 @@ using namespace std;
 
 int main()
 {
-    // create LocalDate for tests
-    LocalTime time = LocalTime_of(15,30,0);
-    LocalTime timeCurrent = LocalTime_now();
+    int length;
 
-    LocalTime_ToString(time); // expected output: 15:30
-    LocalTime_ToString(timeCurrent); // expected output: time current in the moment the compilation, format: HOUR:MINUTE:SECOND
+    LinkedList List = linkedList();
 
-    LocalTime_ToString(LocalTime_plusHours(time, 1)); // expected output: 16:30
-    LocalTime_ToString(LocalTime_plusMinutes(time, 1)); // expected output: 15:31
-    LocalTime_ToString(LocalTime_plusSeconds(time, 15)); // expected output: 15:30:15
+    insertStart(List, 51); // [51]
+    insertStart(List, 77); // [77, 51]
+    insertPosition(List, 99, 1); // [77, 99, 51]
+    insertEnd(List, 43); // [77, 99, 51, 43]
 
-    LocalTime_ToString(LocalTime_minusHours(time, 1)); // expected output: 14:30
-    LocalTime_ToString(LocalTime_minusMinutes(time, 1)); // expected output: 15:29
-    LocalTime_ToString(LocalTime_minusSeconds(time, 0)); // expected output: 15:30
+    //removeStart(List); // [99, 51, 43]
+    //removePosition(List, 1); // [77, 51, 43]
+    //removeEnd(List); // [77, 99, 51]
+
+    toStringList(List); // show the list, expected output: [77, 99, 51, 43]
+
+    getSize(List, &length); // get size to list
+    cout << "length: " << length << endl; // expected output: length: 4
+
+    destructorList(List);
 
     //cout << "" << endl; // new line
 
